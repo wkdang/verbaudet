@@ -171,10 +171,10 @@ if [ "$6" == "2.0" ]; then
   cd /hana/data/sapbits
   echo "hana 2.0 download start" >> /tmp/parameter.txt
   /usr/bin/wget --quiet $Uri/SapBits/md5sums
-  /usr/bin/wget --quiet $Uri/SapBits/51052325_part1.exe
-  /usr/bin/wget --quiet $Uri/SapBits/51052325_part2.rar
-  /usr/bin/wget --quiet $Uri/SapBits/51052325_part3.rar
-  /usr/bin/wget --quiet $Uri/SapBits/51052325_part4.rar
+  /usr/bin/wget --quiet $Uri/SapBits/51053381_part1.exe
+  /usr/bin/wget --quiet $Uri/SapBits/51053381_part2.rar
+  /usr/bin/wget --quiet $Uri/SapBits/51053381_part3.rar
+  /usr/bin/wget --quiet $Uri/SapBits/51053381_part4.rar
   /usr/bin/wget --quiet "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/hdbinst1.cfg"
   echo "hana 2.0 download end" >> /tmp/parameter.txt
 
@@ -183,7 +183,7 @@ if [ "$6" == "2.0" ]; then
 
   echo "hana 2.0 unrar start" >> /tmp/parameter.txt
   cd /hana/data/sapbits
-  unrar x 51052325_part1.exe
+  unrar x 51053381_part1.exe
   echo "hana 2.0 unrar end" >> /tmp/parameter.txt
 
   echo "hana 2.0 prepare start" >> /tmp/parameter.txt
@@ -192,7 +192,7 @@ if [ "$6" == "2.0" ]; then
   cd /hana/data/sapbits
   myhost=`hostname`
   sedcmd="s/REPLACE-WITH-HOSTNAME/$myhost/g"
-  sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/hana\/data\/sapbits\/51052325/g"
+  sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/hana\/data\/sapbits\/51052383/g"
   sedcmd3="s/root_user=root/root_user=$HANAUSR/g"
   #sedcmd4="s/root_password=AweS0me@PW/root_password=$HANAPWD/g"
   sedcmd4="s/password=AweS0me@PW/password=$HANAPWD/g"
@@ -204,8 +204,8 @@ if [ "$6" == "2.0" ]; then
   echo "hana 2.0 prepare end" >> /tmp/parameter.txt
 
   echo "install hana 2.0 start" >> /tmp/parameter.txt
-  cd /hana/data/sapbits/51052325/DATA_UNITS/HDB_LCM_LINUX_X86_64
-  /hana/data/sapbits/51052325/DATA_UNITS/HDB_LCM_LINUX_X86_64/hdblcm -b --configfile /hana/data/sapbits/hdbinst-local.cfg
+  cd /hana/data/sapbits/51053381/DATA_UNITS/HDB_LCM_LINUX_X86_64
+  /hana/data/sapbits/51053381/DATA_UNITS/HDB_LCM_LINUX_X86_64/hdblcm -b --configfile /hana/data/sapbits/hdbinst-local.cfg
   echo "Log file written to '/var/tmp/hdb_H10_hdblcm_install_xxx/hdblcm.log' on host 'saphanaarm'." >> /tmp/parameter.txt
   echo "install hana 2.0 end" >> /tmp/parameter.txt
 
