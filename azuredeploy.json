@@ -205,28 +205,28 @@
   },
   "variables": {
     "vmName": "[toLower(parameters('vmName'))]",
-    "smallUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/small.json",
-    "mediumUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/medium.json",
-    "largeUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/large.json",
-    "extralargeUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/extralarge.json",
-    "hanajbUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/hanajb.json",
-    "hanaUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/hanastudio.ps1",
+    "smallUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/Vms/small.json",
+    "mediumUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/Vms/medium.json",
+    "largeUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/Vms/large.json",
+    "extralargeUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/Vms/extralarge.json",
+    "hanajbUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/Vms/hanajb.json",
+    "hanaUri": "https://raw.githubusercontent.com/wkdang/verbaudet/master/hanastudio.ps1",
     "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',parameters('NetworkName'))]",
     "HANAsubnetRef": "[if (equals(parameters('ExistingNetworkResourceGroup'), 'no') , concat(variables('vnetID'),'/subnets/',parameters('HANASubnetName')),concat(resourceId(parameters('ExistingNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/', parameters('NetworkName')), '/subnets/',parameters('HANASubnetName')))]",
     "mgmtSubnetRef": "[if (equals(parameters('ExistingNetworkResourceGroup'), 'no') , concat(variables('vnetID'),'/subnets/',parameters('ManagementSubnetName')),concat(resourceId(parameters('ExistingNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/', parameters('NetworkName')), '/subnets/',parameters('ManagementSubnetName')))]",
     "vmSizeArray": "[split(parameters('vmSize'),' ')]",
     "vmSize": "[variables('vmSizeArray')[0]]",
-	"networkSecurityGroupName": "[concat(parameters('vmName'), '_nsg')]",
-	"NSG_SQL_Name": "SQL",
-	"NSG_XS_Name": "XS",
-	"NSG_XSA_Name": "XSA",
-	"NSG_SOAP_Name": "SOAP",
-	"NSG_SQL2_Name": "SQL2",
-	"NSG_SQL_SORTANT_Name": "SQL_SORTANT",
-	"NSG_HTTP_Name": "HTTP",
-	"NSG_HTTPS_Name": "HTTPS"
-	
-},
+    "networkSecurityGroupName": "[concat(parameters('vmName'), '_nsg')]",
+    "NSG_SQL_Name": "SQL",
+    "NSG_XS_Name": "XS",
+    "NSG_XSA_Name": "XSA",
+    "NSG_SOAP_Name": "SOAP",
+    "NSG_SQL2_Name": "SQL2",
+    "NSG_SQL_SORTANT_Name": "SQL_SORTANT",
+    "NSG_HTTP_Name": "HTTP",
+    "NSG_HTTPS_Name": "HTTPS"
+
+  },
     "resources": [
 
 	{ 
