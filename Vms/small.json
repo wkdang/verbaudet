@@ -137,7 +137,7 @@
   },
   "variables": {
     "api-version": "2017-06-01",
-    "api-version-vm": "2019-03-01",
+    "api-version-vm": "2018-10-01",
     "mode": "Push",
     "nicName": "[if (equals(parameters('IPAllocationMethod'),'Static'), concat(parameters('vmName'),'-static'), concat(parameters('vmName'),'-dynamic'))]",
     "subnetRef": "[parameters('HANASubnetRef')]",
@@ -370,6 +370,22 @@
         "diskSizeGB": "[variables('diskConfig').data3]"
       }
     },
+    {
+      "type": "Microsoft.Compute/availabilitySets",
+      "name": "[parameters('AvailSetName')]",
+      "apiVersion": "2017-03-30",
+      "location": "[resourceGroup().location]",
+      "sku": {
+        "name": "Aligned"
+      },
+      "properties": {
+        "platformFaultDomainCount": 2,
+        "platformUpdateDomainCount": 5
+      }
+    },
+
+
+
     {
       "apiVersion": "[variables('api-version-vm')]",
       "type": "Microsoft.Compute/virtualMachines",
