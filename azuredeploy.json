@@ -1,200 +1,208 @@
 {
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "VMName": {
-            "type": "string",
-			"defaultValue": "sapahanaarm",
-            "metadata": {
-                "description": "VM Name"
-            }
-			
-        },
-        "HANAJumpbox": {
-            "type": "string",
-			"defaultValue": "no",
-            "metadata": {
-                "description": "Choose whether to deploy a VM with HANA Studio installed"
-            },
-            "allowedValues": [
-                "yes",
-                "no"
-            ]
-        },
-        "VMSize": {
-            "type": "string",
-            "metadata": {
-                "description": "VM Size"
-            },
-            "defaultValue": "Standard_GS5 (448 GB, Certified)",
-            "allowedValues": [
-                "Standard_GS5 (448 GB, Certified)",
-                "Standard_M64s (1 TB)",
-                "Standard_M64ms (1.7 TB)",
-                "Standard_M128s (2 TB)",
-                "Standard_M128ms (3.8 TB)",
-                "Standard_E16s_v3 (128 GB)",
-                "Standard_E32s_v3 (256 GB)",
-                "Standard_E64s_v3 (448 GB)"
-            ]
-        },
-        "NetworkName": {
-            "type": "string",
-            "defaultValue": "ra-sap-hana-vnet",
-            "metadata": {
-                "description": "The HANA VNET"
-            }
-        },
-        "addressPrefixes": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16",
-            "metadata": {
-                "description": "The HANA VNET prefix"
-            }
-        },
-        "HANASubnetName": {
-            "type": "string",
-            "defaultValue": "SAPDataSubnet",
-            "metadata": {
-                "description": "The data subnet name"
-            }
-        },
-        "HANASubnetPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.5.0/24",
-            "metadata": {
-                "description": "The data subnet prefix"
-            }
-        },
-        "ManagementSubnetName": {
-            "type": "string",
-            "defaultValue": "SAPMgmtSubnet",
-            "metadata": {
-                "description": "The management subnet name"
-            }
-        },
-        "ManagementSubnetPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.6.0/24",
-            "metadata": {
-                "description": "The management subnet prefix"
-            }
-        },
-        "customURI": {
-            "type": "string",
-            "defaultValue": "https://saphanakit.blob.core.windows.net/installation",
-            "metadata": {
-                "description": "URI where SAP bits are uploaded"
-            }
-        },
-        "VMUserName": {
-            "type": "string",
-            "metadata": {
-                "description": "Username for the Virtual Machine"
-            },
-            "defaultValue": "testuser"
-        },
-        "VMPassword": {
-            "type": "securestring",
-            "metadata": {
-                "description": "Password for the Virtual Machine"
-            }
-        },
-        "OperatingSystem": {
-            "type": "string",
-            "metadata": {
-                "description": "Operating system for HANA Machine"
-            },
-            "defaultValue": "SLES for SAP 12 SP2",
-            "allowedValues": [
-                "SLES for SAP 12 SP2",
-                "RHEL 7.2 for SAP HANA"
-            ]
-        },
-		"HANAVers": {
-            "type": "string",
-            "allowedValues": [
-                "1.0",
-                "2.0"
-			],	
-			"metadata": {
-                "description": "SAP HANA Version 1.0 ou 2.0"
-            },
-            "defaultValue": "2.0"
-            
-        },
-        "HANASID": {
-            "type": "string",
-            "metadata": {
-                "description": "SAP HANA System ID"
-            },
-            "defaultValue": "H10"
-        },
-        "HANANumber": {
-            "type": "string",
-            "metadata": {
-                "description": "SAP HANA Instance Number"
-            },
-            "defaultValue": "00"
-        },
-        "ExistingNetworkResourceGroup": {
-            "type": "string",
-            "metadata": {
-                "description": "Type in the name of the Resource Group for an existing network or leave no to use the same one"
-            },
-            "defaultValue": "no"
-        },
-        "IPAllocationMethod": {
-            "type": "string",
-            "allowedValues" : [
-              "Dynamic",
-              "Static"
-            ],
-            "metadata": {
-                "description": "IP Allocation Method"
-          },
-          "defaultValue": "Dynamic"
-        },
-        "IPPublic": {
-            "type": "string",
-            "allowedValues" : [
-              "yes",
-              "no"
-            ],
-            "metadata": {
-                "description": "Choose whether to acquire a public IP"
-          },
-          "defaultValue": "yes"
-        },
-		"DnSName": {
-            "type": "string",
-			"defaultValue": "saphanaarm",
-            "metadata": {
-                "description": "DNS Name for public IP only"
-            }
-        },
-		"StaticIP": {
-          "type": "string",
-          "metadata": {
-            "description": "IP Address for the HANA VM when Static IP Allocation Method has been selected"
-          },
-          "defaultValue": "10.0.5.4"
-        },  
-		
-		"AutoShutdown": {
-          "type": "string",
-          "allowedValues": [
-                "yes",
-                "no"
-            ],       
-            "metadata": {
-                "description": "Define an autoshutdown for your VM"
-            },
-            "defaultValue": "yes"
+  "parameters": {
+    "VMName": {
+      "type": "string",
+      "defaultValue": "sapahanaarm",
+      "metadata": {
+        "description": "VM Name"
+      }
 
-        }
-		
     },
+    "HANAJumpbox": {
+      "type": "string",
+      "defaultValue": "no",
+      "metadata": {
+        "description": "Choose whether to deploy a VM with HANA Studio installed"
+      },
+      "allowedValues": [
+        "yes",
+        "no"
+      ]
+    },
+    "VMSize": {
+      "type": "string",
+      "metadata": {
+        "description": "VM Size"
+      },
+      "defaultValue": "Standard_GS5 (448 GB, Certified)",
+      "allowedValues": [
+        "Standard_GS5 (448 GB, Certified)",
+        "Standard_M64s (1 TB)",
+        "Standard_M64ms (1.7 TB)",
+        "Standard_M128s (2 TB)",
+        "Standard_M128ms (3.8 TB)",
+        "Standard_E16s_v3 (128 GB)",
+        "Standard_E32s_v3 (256 GB)",
+        "Standard_E64s_v3 (448 GB)"
+      ]
+    },
+    "AvailSetName": {
+      "type": "string",
+      "metadata": {
+        "description": "This is the name of the availability set to deploy the machine in"
+      },
+      "defaultValue": ""
+
+    },
+    "NetworkName": {
+      "type": "string",
+      "defaultValue": "ra-sap-hana-vnet",
+      "metadata": {
+        "description": "The HANA VNET"
+      }
+    },
+    "addressPrefixes": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16",
+      "metadata": {
+        "description": "The HANA VNET prefix"
+      }
+    },
+    "HANASubnetName": {
+      "type": "string",
+      "defaultValue": "SAPDataSubnet",
+      "metadata": {
+        "description": "The data subnet name"
+      }
+    },
+    "HANASubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.5.0/24",
+      "metadata": {
+        "description": "The data subnet prefix"
+      }
+    },
+    "ManagementSubnetName": {
+      "type": "string",
+      "defaultValue": "SAPMgmtSubnet",
+      "metadata": {
+        "description": "The management subnet name"
+      }
+    },
+    "ManagementSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.6.0/24",
+      "metadata": {
+        "description": "The management subnet prefix"
+      }
+    },
+    "customURI": {
+      "type": "string",
+      "defaultValue": "https://saphanakit.blob.core.windows.net/installation",
+      "metadata": {
+        "description": "URI where SAP bits are uploaded"
+      }
+    },
+    "VMUserName": {
+      "type": "string",
+      "metadata": {
+        "description": "Username for the Virtual Machine"
+      },
+      "defaultValue": "testuser"
+    },
+    "VMPassword": {
+      "type": "securestring",
+      "metadata": {
+        "description": "Password for the Virtual Machine"
+      }
+    },
+    "OperatingSystem": {
+      "type": "string",
+      "metadata": {
+        "description": "Operating system for HANA Machine"
+      },
+      "defaultValue": "SLES for SAP 12 SP2",
+      "allowedValues": [
+        "SLES for SAP 12 SP2",
+        "RHEL 7.2 for SAP HANA"
+      ]
+    },
+    "HANAVers": {
+      "type": "string",
+      "allowedValues": [
+        "1.0",
+        "2.0"
+      ],
+      "metadata": {
+        "description": "SAP HANA Version 1.0 ou 2.0"
+      },
+      "defaultValue": "2.0"
+
+    },
+    "HANASID": {
+      "type": "string",
+      "metadata": {
+        "description": "SAP HANA System ID"
+      },
+      "defaultValue": "H10"
+    },
+    "HANANumber": {
+      "type": "string",
+      "metadata": {
+        "description": "SAP HANA Instance Number"
+      },
+      "defaultValue": "00"
+    },
+    "ExistingNetworkResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "Type in the name of the Resource Group for an existing network or leave no to use the same one"
+      },
+      "defaultValue": "no"
+    },
+    "IPAllocationMethod": {
+      "type": "string",
+      "allowedValues": [
+        "Dynamic",
+        "Static"
+      ],
+      "metadata": {
+        "description": "IP Allocation Method"
+      },
+      "defaultValue": "Dynamic"
+    },
+    "IPPublic": {
+      "type": "string",
+      "allowedValues": [
+        "yes",
+        "no"
+      ],
+      "metadata": {
+        "description": "Choose whether to acquire a public IP"
+      },
+      "defaultValue": "yes"
+    },
+    "DnSName": {
+      "type": "string",
+      "defaultValue": "saphanaarm",
+      "metadata": {
+        "description": "DNS Name for public IP only"
+      }
+    },
+    "StaticIP": {
+      "type": "string",
+      "metadata": {
+        "description": "IP Address for the HANA VM when Static IP Allocation Method has been selected"
+      },
+      "defaultValue": "10.0.5.4"
+    },
+
+    "AutoShutdown": {
+      "type": "string",
+      "allowedValues": [
+        "yes",
+        "no"
+      ],
+      "metadata": {
+        "description": "Define an autoshutdown for your VM"
+      },
+      "defaultValue": "yes"
+
+    }
+
+  },
   "variables": {
     "vmName": "[toLower(parameters('vmName'))]",
     "smallUri": "https://raw.githubusercontent.com/wkdang/SAPonAzure/master/Vms/small.json",
