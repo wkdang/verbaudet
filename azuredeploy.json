@@ -44,7 +44,7 @@
         "description": "This is the name of the availability set to deploy the machine in"
       },
 
-      "defaultValue": ""
+      "defaultValue": "available"
     },
     "NetworkName": {
       "type": "string",
