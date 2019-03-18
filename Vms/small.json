@@ -25,7 +25,7 @@
       "metadata": {
         "description": "Operating system for HANA Machine"
       },
-      "defaultValue": "SLES for SAP 12 SP2",
+      "defaultValue": "RHEL 7.5 for SAP",
       "allowedValues": [
         "SLES for SAP 12 SP2",
         "RHEL 7.5 for SAP"
@@ -142,7 +142,7 @@
     "nicName": "[if (equals(parameters('IPAllocationMethod'),'Static'), concat(parameters('vmName'),'-static'), concat(parameters('vmName'),'-dynamic'))]",
     "subnetRef": "[parameters('HANASubnetRef')]",
     "OperatingSystemSpec": {
-      "imagePublisher": "[if (contains(parameters('OperatingSystem'),'SUSE'),'SUSE','RedHat')]",
+      "imagePublisher": "[if (contains(parameters('OperatingSystem'),'SUSE'),'SUSE','REDHAT')]",
       "imageOffer": "[if (contains(parameters('OperatingSystem'),'SLES-SAP'),'SLES-SAP','RHEL-SAP')]",
       "sku": "[if (contains(parameters('OperatingSystem'),'12-SP2'),'12-SP2','7.5')]"
     },
