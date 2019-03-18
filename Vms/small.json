@@ -137,7 +137,7 @@
   },
   "variables": {
     "api-version": "2017-06-01",
-    "api-version-vm": "2018-09-30",
+    "api-version-vm": "2018-06-01",
     "mode": "Push",
     "nicName": "[if (equals(parameters('IPAllocationMethod'),'Static'), concat(parameters('vmName'),'-static'), concat(parameters('vmName'),'-dynamic'))]",
     "subnetRef": "[parameters('HANASubnetRef')]",
@@ -397,11 +397,14 @@
         "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-backup1'))]",
         "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-data1'))]",
         "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-data2'))]",
-        "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-data3'))]"
+        "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-data3'))]",
+        "[resourceId('Microsoft.Compute/availabilitySets', parameters('AvailSetName'))]"
 
       ],
       "properties": {
-
+        "availabilitySet": {
+          "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('AvailSetName'))]"
+        },
 
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
