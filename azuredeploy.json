@@ -43,8 +43,8 @@
       "metadata": {
         "description": "This is the name of the availability set to deploy the machine in"
       },
-      "defaultValue": ""
 
+      "defaultValue": ""
     },
     "NetworkName": {
       "type": "string",
@@ -116,7 +116,7 @@
       "defaultValue": "SLES for SAP 12 SP2",
       "allowedValues": [
         "SLES for SAP 12 SP2",
-        "RHEL 7.2 for SAP HANA"
+        "RHEL 7.5 for SAP HANA"
       ]
     },
     "HANAVers": {
