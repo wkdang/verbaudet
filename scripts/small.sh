@@ -113,10 +113,14 @@ number="$(lsscsi [*] 0 0 4| cut -c2)"
 echo "logicalvols start" >> /tmp/parameter.txt
   hanavg1lun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
   hanavg2lun="$(lsscsi $number 0 0 4 | grep -o '.\{9\}$')"
-  pvcreate $hanavg1lun $hanavg2lun
-  vgcreate hanavg $hanavg1lun $hanavg2lun
-  lvcreate -l 80%FREE -n datalv hanavg
-  lvcreate -l 20%VG -n loglv hanavg
+  hanavg3lun="$(lsscsi $number 0 0 5 | grep -o '.\{9\}$')"
+  pvcreate $hanavg1lun $hanavg2lun $hanavg3lun
+  vgcreate hanavg $hanavg1lun $hanavg2lun $hanavg3lun
+  PHYSVOLUMES=3 
+  STRIPESIZE=64 
+
+  lvcreate -i$PHYSVOLUMES -I$STRIPESIZE -l 70%FREE -n datalv hanavg
+  lvcreate -i$PHYSVOLUMES -I$STRIPESIZE -l 100%FREE -n loglv hanavg
   mkfs.xfs /dev/hanavg/datalv
   mkfs.xfs /dev/hanavg/loglv
 echo "logicalvols end" >> /tmp/parameter.txt
