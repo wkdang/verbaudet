@@ -192,7 +192,7 @@ if [ "$6" == "2.0" ]; then
   cd /hana/data/sapbits
   myhost=`hostname`
   sedcmd="s/REPLACE-WITH-HOSTNAME/$myhost/g"
-  sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/hana\/data\/sapbits\/51052383/g"
+  sedcmd2="s/\/hana\/shared\/sapbits\/51052325/\/hana\/data\/sapbits\/51053381/g"
   sedcmd3="s/root_user=root/root_user=$HANAUSR/g"
   #sedcmd4="s/root_password=AweS0me@PW/root_password=$HANAPWD/g"
   sedcmd4="s/password=AweS0me@PW/password=$HANAPWD/g"
