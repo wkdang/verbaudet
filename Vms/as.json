@@ -372,7 +372,7 @@
               "fileUris": [
                 "https://raw.githubusercontent.com/wkdang/verbaudet/master/scripts/as.sh"
               ],
-              "commandToExecute": "[concat('sh small.sh ', parameters('customUri'), ' ' , parameters('vmUserName'), ' ', parameters('vmPassword'),' ', parameters('HANASID'), ' ', parameters('HANANUMBER'), ' ', parameters('HANAVERS'), ' ', parameters('OperatingSystem'))]"
+              "commandToExecute": "[concat('sh as.sh ', parameters('customUri'), ' ' , parameters('vmUserName'), ' ', parameters('vmPassword'),' ', parameters('HANASID'), ' ', parameters('HANANUMBER'), ' ', parameters('HANAVERS'), ' ', parameters('OperatingSystem'))]"
             }
           }
         }
