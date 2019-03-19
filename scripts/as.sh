@@ -26,10 +26,10 @@ if [ "$7" == "RHEL" ]; then
 	sudo mkdir -p /hana/{data,log,shared,backup}
 	sudo mkdir /usr/sap
 	sudo mkdir -p /hana/data/{sapbitslocal,sapbits}
-	yum -y install tuned-profiles-sap-hana
+	yum -y install tuned-profiles-sap
 	systemctl start tuned
 	systemctl enable tuned
-	tuned-adm profile sap-hana
+	tuned-adm profile sap-netweaver
 	setenforce 0
 	#sed -i 's/\(SELINUX=enforcing\|SELINUX=permissive\)/SELINUX=disabled/g' \ > /etc/selinux/config
 	echo "start SELINUX" >> /tmp/parameter.txt
