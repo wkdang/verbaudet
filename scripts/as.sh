@@ -220,4 +220,4 @@ echo "write to fstab end" >> /tmp/parameter.txt
 #
 #
 #fi
-shutdown -r 1
+#shutdown -r 1
