@@ -108,7 +108,7 @@ cp -f /etc/waagent.conf.new /etc/waagent.conf
 #sed -i -e "s/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g" -e "s/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=163840/g" /etc/waagent.conf
 
 
-number="$(lsscsi [*] 0 0 4| cut -c2)"
+number="$(lsscsi [*] 0 0 5| cut -c2)"
 
 echo "logicalvols start" >> /tmp/parameter.txt
   hanavg1lun="$(lsscsi $number 0 0 3 | grep -o '.\{9\}$')"
