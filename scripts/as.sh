@@ -127,7 +127,7 @@ mkdir -p /hana/data/sapbits
 echo "mounthanashared end" >> /tmp/parameter.txt
 
 echo "write to fstab start" >> /tmp/parameter.txt
-echo "/dev/mapper/datavg-datalv /hana/data xfs defaults 0 0" >> /etc/fstab
+echo "/dev/mapper/datavg-datalv /usr/sap xfs defaults 0 0" >> /etc/fstab
 
 echo "//saphanakit.file.core.windows.net/sapinstall/HANA1SP12/SAP_HANA_1.0_DSP_122.13 /hana/data/sapbitslocal/ cifs vers=3.0,dir_mode=0777,file_mode=0777,username=saphanakit,password=UVLxDAZmw937RVDNQBF+OetwlLYwitsbQPHH2tnEiTut/y+hRgx0YkBzUtEGI99mhDsT/KxgSxJ/h6HUu6JHoQ==">> /etc/fstab
 echo "write to fstab end" >> /tmp/parameter.txt
