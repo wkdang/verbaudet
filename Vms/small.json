@@ -213,6 +213,7 @@
         "[concat('Microsoft.Network/publicIPAddresses/', parameters('vmName'), '-IPPublic')]"
       ],
       "properties": {
+        "enableAcceleratedNetworking": true,
         "ipConfigurations": [
           {
             "name": "[concat(parameters('vmName'),'-ipcfg')]",
@@ -240,6 +241,7 @@
         "[concat('Microsoft.Network/publicIPAddresses/', parameters('vmName'), '-IPPublic')]"
       ],
       "properties": {
+        "enableAcceleratedNetworking": true,
         "ipConfigurations": [
           {
             "name": "[concat(parameters('vmName'),'-ipcfg')]",
@@ -427,6 +429,7 @@
           "dataDisks": [
             {
               "lun": 0,
+              "caching": "None",
               "createOption": "attach",
               "managedDisk": {
                 "id": "[resourceId('Microsoft.Compute/disks/', concat(parameters('vmName'),'-shared'))]"
